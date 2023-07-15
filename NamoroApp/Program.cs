@@ -1,5 +1,10 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using NamoroApp.Data;
+using NamoroApp.Interface;
+using NamoroApp.Services;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,12 +22,29 @@ builder.Services.AddDbContext<DataContext>(opt =>
 });
 
 builder.Services.AddCors();
+builder.Services.AddScoped<ITokenService, TokenServices>();
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding
+            .UTF8.GetBytes(builder.Configuration["TokenKey"])),
+            ValidateIssuer = false,
+            ValidateAudience = false
+        };
+    });
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 
-app.UseCors(builder => builder.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:4200"));
+app.UseCors(builder => builder.AllowAnyHeader().AllowAnyMethod()
+    .WithOrigins("https://localhost:4200"));
+
+app.UseAuthentication();
+app.UseAuthorization();
 
 if (app.Environment.IsDevelopment())
 {

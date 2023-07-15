@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NamoroApp.Data;
 using NamoroApp.Models;
@@ -6,7 +7,7 @@ using System.Collections.Generic;
 
 namespace NamoroApp.Controllers
 {
-
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class UsuarioController : ControllerBase
@@ -18,6 +19,7 @@ namespace NamoroApp.Controllers
             _context = context;
         }
 
+        [AllowAnonymous]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<UsuarioApp>>> GetUsuarios() 
         {
