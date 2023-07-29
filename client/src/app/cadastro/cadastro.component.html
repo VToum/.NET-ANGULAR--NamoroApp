@@ -1,0 +1,15 @@
+<form #cadastroForm="ngForm" (ngSubmit)="cadastro()" autocomplete="off">
+  <h1 class="text-center text-primary">Inscrever-se</h1>
+  <hr />
+  <div class="m3-3">
+    <input type="text" class="form-control" name="username" [(ngModel)]="model.login" placeholder="Login">
+  </div>
+  <div class="m3-3">
+    <input type="password" class="form-control" name="password" [(ngModel)]="model.senha" placeholder="Senha">
+  </div>
+  <div class="mb-3"></div>
+  <div class="text-center">
+    <button class="btn btn-success me-2" type="submit">Cadastro</button>
+    <button class="btn btn-default me-2" type="button" (click)="cancelar()">Cancelar</button>
+  </div>
+</form>
