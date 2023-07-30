@@ -7,9 +7,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
 import { FormControl, FormsModule } from '@angular/forms';
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { HomeComponent } from './home/home.component';
 import { CadastroComponent } from './cadastro/cadastro.component';
+import { MemberListComponent } from './members/member-list/member-list.component';
+import { ListsComponent } from './lists/lists.component';
+import { MessagesComponent } from './messages/messages.component';
+import { MemberDetailComponent } from './members/member-detail/member-detail.component';
+import { SharedModule } from './_modules/shared.module';
+
 
 
 
@@ -18,7 +23,11 @@ import { CadastroComponent } from './cadastro/cadastro.component';
     AppComponent,
     NavComponent,
     HomeComponent,
-    CadastroComponent
+    CadastroComponent,
+    MemberListComponent,
+    ListsComponent,
+    MessagesComponent,
+    MemberDetailComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -26,9 +35,7 @@ import { CadastroComponent } from './cadastro/cadastro.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    BsDropdownModule.forRoot()
-
-
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

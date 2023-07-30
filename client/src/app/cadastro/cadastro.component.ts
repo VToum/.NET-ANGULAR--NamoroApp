@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AccountService } from './../_services/account.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-cadastro',
@@ -10,7 +11,7 @@ export class CadastroComponent implements OnInit {
   @Output() cancelarCadastro = new EventEmitter();
   model: any = {}
 
-  constructor(private accountService: AccountService) { }
+  constructor(private accountService: AccountService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
   }
@@ -20,7 +21,11 @@ export class CadastroComponent implements OnInit {
       next: () => {
         this.cancelar();
       },
-      error: error => console.log(error)
+      error: error =>{
+        this.toastr.error(error.error),
+        console.log(error);
+      }
+
     })
   }
 
