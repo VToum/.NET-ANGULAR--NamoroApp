@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using NamoroApp.Data;
 using NamoroApp.Interface;
-using NamoroApp.Middleware;
 using NamoroApp.Services;
 using System.Text;
 
