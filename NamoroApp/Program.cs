@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using NamoroApp.Data;
 using NamoroApp.Interface;
+using NamoroApp.Middleware;
 using NamoroApp.Services;
 using System.Text;
 
@@ -40,6 +41,7 @@ var app = builder.Build();
 
 
 // Configure the HTTP request pipeline.
+app.UseMiddleware<ExceptionMiddleware>();
 
 app.UseCors(builder => builder.AllowAnyHeader().AllowAnyMethod()
     .WithOrigins("https://localhost:4200"));

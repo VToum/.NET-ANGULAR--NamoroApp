@@ -5,6 +5,8 @@ using NamoroApp.Models;
 
 namespace NamoroApp.Controllers
 {
+    [ApiController]
+    [Route("api/[controller]")]
     public class BuggyController : ControllerBase
     {
         private readonly DataContext _context;
